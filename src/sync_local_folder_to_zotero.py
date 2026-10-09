@@ -17,14 +17,24 @@ Given a folder structure such as:
     │   ├── Paper_A.pdf
     │   └── Paper_B.pdf
     ├── OPM-MEG/
+    │   ├── Paper_C.pdf
+    │   └── Paper_D.pdf
     └── Methods/
+        ├── Paper_E.pdf
+        └── Paper_F.pdf
 
 the script automatically creates a corresponding collection hierarchy in Zotero:
 
     PhD
     ├── Brain Connectivity
+    │   ├── Paper_A.pdf
+    │   └── Paper_B.pdf
     ├── OPM-MEG
+    │   ├── Paper_C.pdf
+    │   └── Paper_D.pdf
     └── Methods
+        ├── Paper_E.pdf
+        └── Paper_F.pdf
 
 and links each PDF to its matching Zotero collection.
 

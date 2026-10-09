@@ -20,7 +20,11 @@ papers_for_phd/
 │   ├── Paper_A.pdf
 │   └── Paper_B.pdf
 ├── OPM-MEG/
+│   ├── Paper_C.pdf
+│   └── Paper_D.pdf
 └── Methods/
+     ├── Paper_E.pdf
+     └── Paper_F.pdf
 ```
 
 Zotero collection structure created automatically:
@@ -28,8 +32,14 @@ Zotero collection structure created automatically:
 ```text
 PhD
 ├── Brain Connectivity
+│   ├── Paper_A.pdf
+│   └── Paper_B.pdf
 ├── OPM-MEG
+│   ├── Paper_C.pdf
+│   └── Paper_D.pdf
 └── Methods
+     ├── Paper_E.pdf
+     └── Paper_F.pdf
 ```
 
 ### Features
