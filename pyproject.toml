@@ -1,0 +1,28 @@
+[project]
+name = "py-zotero-manage"
+version = "0.1.0"
+description = "Python utilities and automation tools for managing Zotero libraries."
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+    { name = "Kiran Phalke" }
+]
+
+dependencies = [
+    "pyzotero",
+    "pymupdf",
+    "requests",
+]
+
+keywords = [
+    "zotero",
+    "bibliography",
+    "references",
+    "research",
+    "literature-management",
+    "automation",
+]
+
+[tool.uv]
+package = false
