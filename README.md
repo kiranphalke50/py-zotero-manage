@@ -2,13 +2,11 @@
 
 A collection of Python utilities for managing, organizing, and automating workflows within Zotero using the Zotero API.
 
-The goal of this repository is to provide practical scripts that reduce repetitive tasks when working with large research literature collections. While the current focus is on synchronizing local PDF libraries with Zotero, additional tools may be added in the future for metadata management, library maintenance, reporting, tagging, note extraction, and other research workflows.
-
 ## Current Scripts
 
 ### `sync_local_folder_to_zotero.py`
 
-Synchronizes a local folder hierarchy containing PDF papers to a Zotero library while preserving the existing folder structure.
+Synchronizes a local folder hierarchy containing PDF papers to a Zotero library while preserving the existing folder structure. Also allows using Zotero's Linked Attachment Base Directory (LABD) setting to create relative linked paths, so that linked PDFs will be available across different Zotero instances.
 
 ### Example
 
@@ -54,36 +52,7 @@ PhD
 - Falls back to generic Zotero Document entries when metadata cannot be identified
 - Preserves the local folder structure as the source of truth
 - Allows a configurable root collection name in Zotero (e.g. `PhD`)
-
-### Typical Workflow
-
-```text
-Local PDF
-     ↓
-Extract DOI
-     ↓
-Crossref Lookup
-     ↓
-Create Journal Article in Zotero
-     ↓
-Create Linked PDF Attachment
-```
-
-If a DOI cannot be located:
-
-```text
-Local PDF
-     ↓
-DOI Not Found
-     ↓
-Create Generic Document in Zotero
-     ↓
-Create Linked PDF Attachment
-```
-
-This ensures that every PDF in the source folder is represented in Zotero, even if metadata cannot be determined automatically.
-
----
+- Allows Zotero's LABD setting
 
 ## Installation
 
@@ -110,15 +79,12 @@ Open the script and configure the following variables:
 ROOT_FOLDER = Path(
     r"C:\path\to\papers_for_phd"
 )
-
-ROOT_COLLECTION_NAME = "PhD"
-
+ROOT_COLLECTION_NAME = "YOUR_ZOTERO_COLLECTION_NAME"
 LIBRARY_ID = "YOUR_LIBRARY_ID"
 API_KEY = "YOUR_API_KEY"
 LIBRARY_TYPE = "user"
+USE_LABD = True/False
 ```
-
-### Required Settings
 
 | Variable | Description |
 |-----------|-------------|
@@ -127,6 +93,7 @@ LIBRARY_TYPE = "user"
 | `LIBRARY_ID` | Zotero User or Group Library ID |
 | `API_KEY` | Zotero API key with write permissions |
 | `LIBRARY_TYPE` | Usually `"user"` |
+| `USE_LABD` | Set to `True` to use Linked Attachment Base Directory (LABD) |
 
 ### Obtaining Zotero Credentials
 
@@ -151,12 +118,6 @@ Run the synchronization script:
 
 ```bash
 uv run python src/local/sync_local_folder_to_zotero.py
-```
-
-or:
-
-```bash
-python src/local/sync_local_folder_to_zotero.py
 ```
 
 if you are using a standard virtual environment.

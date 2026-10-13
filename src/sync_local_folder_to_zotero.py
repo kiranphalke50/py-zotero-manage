@@ -112,6 +112,10 @@ LIBRARY_TYPE = (
 
 PDF_EXTENSIONS = {".pdf"}
 
+USE_LABD = False  # Set to True if using Linked Attachment Base Directory (LABD) in Zotero; 
+# this will store paths relative to ROOT_FOLDER. Set to False to store absolute paths.
+# Caution : set LABD setting in Zotero before running this script for correct file linking.
+
 # =====================================================
 # COLLECTION HELPERS
 # =====================================================
@@ -222,9 +226,21 @@ def get_crossref_metadata(doi):
 
 def pdf_already_linked(path):
 
-    zotero_path = f"attachments:{path}"
+    if USE_LABD:
 
-    return str(path) in existing_paths or zotero_path in existing_paths
+        relative_path = (
+            path
+            .relative_to(ROOT_FOLDER)
+            .as_posix()
+        )
+
+        zotero_path = f"attachments:{relative_path}"
+
+    else:
+
+        zotero_path = str(path)
+
+    return zotero_path in existing_paths
 
 
 def create_generic_document(pdf_path, collection_key):
@@ -331,18 +347,32 @@ def add_pdf(pdf_path, collection_key):
     # ATTACH PDF
     # =================================================
 
+    if USE_LABD:
+        # Store path relative to ROOT_FOLDER.
+        # This allows Zotero's Linked Attachment Base Directory
+        # to resolve the file correctly on different operating systems.
+
+        relative_path = pdf_path.relative_to(ROOT_FOLDER).as_posix()
+
+        zotero_path = f"attachments:{relative_path}"
+
+    else:
+        # Store absolute path (original behaviour)
+
+        zotero_path = str(pdf_path)
+
     attachment = {
         "itemType": "attachment",
         "parentItem": parent_key,
         "linkMode": "linked_file",
         "title": pdf_path.name,
-        "path": str(pdf_path),
+        "path": zotero_path,
         "contentType": "application/pdf",
     }
 
     zot.create_items([attachment])
 
-    existing_paths.add(str(pdf_path))
+    existing_paths.add(zotero_path)
 
     print("  PDF linked")
 
