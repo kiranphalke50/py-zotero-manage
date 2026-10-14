@@ -61,7 +61,7 @@ PhD
 Clone the repository:
 
 ```bash
-git clone https://github.com/<your-username>/py-zotero-manage.git
+git clone https://github.com/kiranphalke50/py-zotero-manage.git
 cd py-zotero-manage
 ```
 
