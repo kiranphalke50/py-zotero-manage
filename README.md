@@ -6,7 +6,9 @@ A collection of Python utilities for managing, organizing, and automating workfl
 
 ### `sync_local_folder_to_zotero.py`
 
-Synchronizes a local folder hierarchy containing PDF papers to a Zotero library while preserving the existing folder structure. Also allows using Zotero's Linked Attachment Base Directory (LABD) setting to create relative linked paths, so that linked PDFs will be available across different Zotero instances.
+Synchronizes a local PDF library to Zotero while preserving the existing folder structure.
+
+The script automatically creates matching collections in Zotero, links PDFs to their corresponding collections, and can optionally use Zotero's Linked Attachment Base Directory (LABD) feature to make linked papers accessible across multiple computers. This allows users to store PDFs in their own cloud storage (e.g. OneDrive) while using Zotero for organization, notes, and citations without relying on Zotero's limited cloud storage.
 
 ### Example
 
