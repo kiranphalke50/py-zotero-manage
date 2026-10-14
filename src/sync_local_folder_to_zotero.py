@@ -444,7 +444,7 @@ if __name__ == "__main__":
 
     existing_paths = set()
 
-    items = zot.everything(zot.top())
+    items = zot.everything(zot.items())
 
     for item in items:
         data = item.get("data", {})
